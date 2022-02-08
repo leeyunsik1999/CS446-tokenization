@@ -69,7 +69,7 @@ class Processor():
         Imports part A text if self.part_a is True. Imports part B if not.
         """
         text = open(
-            f"tokenization-input-part-{'A' if self.part_a else 'B'}.txt")
+            f"./textfiles/tokenization-input-part-{'A' if self.part_a else 'B'}.txt")
         return text
 
 
@@ -82,8 +82,9 @@ class Processor():
         If it is not, stem it, and then add to appropriate list / counter depending on part_a flag.
         """
         # Checking if token is a stopword. Stem only if it isn't. If it is, do nothing
-        if not self.stopper.check(token):
-            #TODO: Stem word
+        if not self.stopper.check(token) and token != '' and token.isalpha():
+            token = Stemmer.stem_a(token)
+            token = Stemmer.stem_b(token)
 
             if (self.part_a):
                 self.data.append(token)

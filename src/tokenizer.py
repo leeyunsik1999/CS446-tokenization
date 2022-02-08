@@ -1,4 +1,6 @@
 import re
+from stopper import Stopper
+
 
 class Tokenizer():
     def tokenize(input: str):
@@ -12,7 +14,7 @@ class Tokenizer():
         """
 
         # Array containing words that were tokenized AND stopped to be returned
-        output = []
+        stopper = Stopper()
 
         # Lowercasing stage
         input = input.lower()
@@ -28,10 +30,13 @@ class Tokenizer():
         for word in split:
             if re.match('^[a-z]\.(([a-z]\.)+)$', word):
                 word = word.replace('.', '')
-                print(word)
+                if not stopper.check(word):
+                    print(word)
             else:
                 for w in word.split("."):
-                    print(w)
+                    if not stopper.check(w):
+                        print(w)
 
 
-Tokenizer.tokenize("one two three four's complement said \"I've got some things to do!\" with N.A.S.A. but not pl.u.ral said \"eh--- don't feel like (doing) this \"")
+Tokenizer.tokenize(
+    "one two three four's complement said \"I've got some things to do!\" with N.A.S.A. but not pl.u.ral said \"eh--- don't feel like (doing) this \"")

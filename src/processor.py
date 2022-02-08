@@ -62,6 +62,10 @@ class Processor():
                         self.stop_and_stem(s)
 
 
+    def getData(self):
+        return self.data
+
+
     def getText(self):
         """
         Method that reads the text to process.

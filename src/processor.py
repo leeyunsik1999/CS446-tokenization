@@ -29,6 +29,13 @@ class Processor():
         # Array of indexes to if part A, else counter for part B
         self.data = [] if part_a else Counter()
 
+        # Array of two arrays to keep track of words in vocab -- words in collection pair for graphing use
+        # index 0 is the array of collection size, index 0 is array of vocab size
+        self.graph_data = [[], []]
+        # Set to keep track of unique vocab count
+        self.vocab = set()
+        self.vocab_count = 0
+
         for line in text:
             """
             Tokenizing part. Also adds to array / counter, depending on part_a flag.
@@ -65,6 +72,9 @@ class Processor():
     def getData(self):
         return self.data
 
+    def getGraphData(self):
+        return self.graph_data
+
 
     def getText(self):
         """
@@ -94,3 +104,9 @@ class Processor():
                 self.data.append(token)
             else:
                 self.data[token] += 1
+
+            # Part collecting data for graphing
+            self.vocab.add(token)
+            self.vocab_count += 1
+            self.graph_data[0].append(self.vocab_count)
+            self.graph_data[1].append(len(self.vocab))

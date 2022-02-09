@@ -1,8 +1,16 @@
 from processor import Processor
+import matplotlib.pyplot as plt
 
-data = [x[0] for x in Processor(part_a=False).getData().most_common(300)]
+processor = Processor(part_a=False)
 
-output = open('../part_b_output.txt', 'w')
+data = processor.getData().most_common(300)
+graph_data = processor.getGraphData()
 
-for str in data:
-    output.write(str + '\n')
+output = open('../terms.txt', 'w')
+
+plt.plot(graph_data[0], graph_data[1], '.-b', markersize=1)
+plt.xlabel("Words in Collection")
+plt.ylabel("Words in Vocabulary")
+plt.show()
+for tup in data:
+    output.write(f"{tup[0]} {tup[1]}\n")

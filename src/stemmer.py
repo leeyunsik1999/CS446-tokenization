@@ -28,9 +28,11 @@ class Stemmer():
         if token.endswith('sses'):
             # -sses --> ss
             token = token[0:-len('sses')] + 'ss'
+
         # Pass if token ends with ss or us
         elif token.endswith('ss') or token.endswith('us'):
             pass
+
         # Ends with s + has a vowel not preceeding s: remove s
         # Initial [a-z]*: Anything before vowel.
         # [aeiou]+: At least one explicit vowel.
@@ -38,28 +40,12 @@ class Stemmer():
         # s: Makes sure it ends in s
         elif re.match('^[a-z]*[aeiou]+[a-z]+s$', token):
             token = token[0:-1]
+
         # Checks if token ends with ies or ied.
         # If so, checks token length. If >4 (preceeded by >=2 chars), replace last 3 chars with i. Else, replace with ie
         elif token.endswith('ies') or token.endswith('ied'):
             token = token[0:-3] + ('i' if len(token) > 4 else 'ie')
 
-        # TODO: Remove if above is fine
-        # # Check if suffix is ss or us. If it isn't, proceed with logic. Else, simply return the token
-        # if not (token.endswith('ss') or token.endswith('us')):
-        #     # -sses --> ss
-        #     if token.endswith('sses'):
-        #         token = token[0:-len('sses')] + 'ss'
-        #     # Ends with s + has a vowel not preceeding s: remove s
-        #     # Initial [a-z]*: Anything before vowel.
-        #     # [aeiou]+: At least one explicit vowel.
-        #     # [a-z]+: At least one character between vowel and s.
-        #     # s: Makes sure it ends in s
-        #     if re.match('^[a-z]*[aeiou]+[a-z]+s', token):
-        #         token = token[0:-1]
-        #     # Checks if token ends with ies or ied.
-        #     # If so, checks token length. If >4 (preceeded by >=2 chars), replace last 3 chars with i. Else, replace with ie
-        #     if token.endswith('ies') or token.endswith('ied'):
-        #         token = token[0:-3] + ('i' if len(token) > 4 else 'ie')
         return token
 
     def stem_b(token):
@@ -74,6 +60,7 @@ class Stemmer():
             # Ends with eedly, remove dly
             else:
                 token = token[0:-3]
+
         else:
             # If word contains vowel and ends with ed, edly, ing, ingly, delete
             if re.match('^[a-z]*[aeiou]+[a-z]+(ed|edly|ing|ingly)$', token):
@@ -85,12 +72,16 @@ class Stemmer():
                     token = token[0:-3]
                 else:
                     token = token[0:-5]
+
                 # Adding e if token ends with at, bl or iz.
                 if token.endswith('at') or token.endswith('bl') or token.endswith('iz'):
                     token += 'e'
+
                 # Double letter not ending in ll, ss or zz
                 elif (len(token) > 2) and (token[len(token)-1] == token[len(token)-2]) and not (token[len(token)-1] == 'l' or token[len(token)-1] == 's' or token[len(token)-1] == 'z'):
                     token = token[0:-1]
+
                 elif len(token) < 4:
                     token += 'e'
+                    
         return token

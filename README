@@ -1,10 +1,17 @@
-Used:
-
-https://www.python.org/dev/peps/pep-0616/
-
-For suffix removal in stemmer. This is the explicit reason why I'm using python 3.9 instead of 3.6: prefix/suffix stuff doesn't exist in 3.6
-+ Also set is faster in 3.9
-
 Dependencies:
 - matplotlib
     - Used for plotting index-frequency for part b
+
+Instructions for downloading dependencies:
+
+$ pip install matplotlib
+
+Building/running the code:
+
+Part A:
+
+$ python part-a-runner.py
+
+Part B:
+
+$ python part-b-runner.py

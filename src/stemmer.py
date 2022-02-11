@@ -62,7 +62,7 @@ class Stemmer():
             # If word contains vowel and ends with ed, edly, ing, ingly, delete
             # Checking it ends first as it's much faster this way
             if token.endswith('ed') or token.endswith('edly') or token.endswith('ing') or token.endswith('ingly'):
-                if re.match('^[a-z]*[aeiou]+[a-z]+$', token):
+                if re.match('^[a-z]*[aeiou]+[a-z]+(ed|edly|ing|ingly)$', token):
                     if token.endswith('ed'):
                         token = token[0:-2]
                     elif token.endswith('edly'):

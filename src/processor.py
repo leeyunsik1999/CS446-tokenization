@@ -1,4 +1,5 @@
 import re   
+from tokenizer import Tokenizer
 from stopper import Stopper
 from stemmer import Stemmer
 from collections import Counter
@@ -61,7 +62,8 @@ class Processor():
                 Part for abbreviating, stopping and stemming individual words. Then, depending on part A or B, simply appends to an array or to counter.
                 """
                 # Abbreviating. Pairs of letter and period --> strip periods. After abbreviating, run it through stopper and stemmer.
-                if re.match('^[a-z]\.(([a-z]\.)+)$', token):
+                if Tokenizer.abbreviate(token):
+                    print(token)
                     token = token.replace('.', '')
                     self.stop_and_stem(token)
                 else:

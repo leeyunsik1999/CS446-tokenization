@@ -20,6 +20,10 @@ I made heavy use of regexes for their convenience. The tradeoff for this was a s
 
 For time performance reasons, for every regex, I tried to detect some aspects of the string (e.g., ends in eed, eedly, etc) before running the regex, so that I could avoid running the regex on strings that can easily be shown to not match the regex. You can see this in parts of my stemmer.py.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
 ## Timing examples
 
 ### Difference between regex and .endswith
@@ -77,5 +81,9 @@ One change I would make is to remove single letter terms, as they pretty much pr
 
 Another thing is more specific changes with -ed, -ing words. With our rules, we change "sourced" to "sourc", then do nothing with it as it doesn't fit any of the other conditions we check for further processing. This compares to "source" which stays as it is for terms. This inflates the number of vocabulary and reduces the effectiveness for searching (as idential terms are identified as two separate ones), and we should improve stemming to deal with this.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
 # 5. (10%) Figure 4.4. in the textbook (pp. 82) displays a graph of vocabulary growth for the TREC GOV2 collection. Create a similar graph for Moby-Dick.
-[Graph of Collection Vocabulary - Unique Vocabulary](src/Figures/Figure_1.png)
+![Graph of Collection Vocabulary - Unique Vocabulary](..//Figures/Figure_1.png)

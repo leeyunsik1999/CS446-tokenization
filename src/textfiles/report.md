@@ -22,10 +22,6 @@ I made heavy use of regexes for their convenience. The tradeoff for this was a s
 
 For time performance reasons, for every regex, I tried to detect some aspects of the string (e.g., ends in eed, eedly, etc) before running the regex, so that I could avoid running the regex on strings that can easily be shown to not match the regex. You can see this in parts of my stemmer.py.
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
-
 ## Timing examples
 
 ### Difference between regex and .endswith

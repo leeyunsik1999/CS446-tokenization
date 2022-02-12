@@ -24,22 +24,21 @@ class Stemmer():
         elif token.endswith('ss') or token.endswith('us'):
             pass
 
+        # Checks if token ends with ies or ied.
+        # If so, checks token length. If >4 (preceeded by >=2 chars), replace last 3 chars with i. Else, replace with ie
+        elif token.endswith('ies') or token.endswith('ied'):
+            token = token[0:-3] + ('i' if len(token) > 4 else 'ie')
+
         # Ends with s + has a vowel not preceeding s: remove s
         # Initial [a-z]*: Anything before vowel.
         # [aeiou]+: At least one explicit vowel.
         # [a-z]*: Any number of characters between s and initial vowel
         # s: Makes sure it ends in s
-        # NOTE: This step done after ss/us detection so we don't need regex to detect and skip -ss/us words
+        # NOTE: This step done last so we don't need regex to detect and skip -ss/us/ies/ied words
         # Checking if string ends with s first as it makes it much faster to detect words not ending that way
         # Using string index is faster than .endswith
-        elif token[len(token)-1] == 's':
-            if re.match('^[a-z]*[aeiou][a-z]+s$', token):
+        elif token[len(token)-1] == 's' and re.match('^[a-z]*[aeiou][a-z]+s$', token):
                 token = token[0:-1]
-
-        # Checks if token ends with ies or ied.
-        # If so, checks token length. If >4 (preceeded by >=2 chars), replace last 3 chars with i. Else, replace with ie
-        elif token.endswith('ies') or token.endswith('ied'):
-            token = token[0:-3] + ('i' if len(token) > 4 else 'ie')
 
         return token
 
@@ -61,8 +60,7 @@ class Stemmer():
         else:
             # If word contains vowel and ends with ed, edly, ing, ingly, delete
             # Checking it ends first as it's much faster this way
-            if token.endswith('ed') or token.endswith('edly') or token.endswith('ing') or token.endswith('ingly'):
-                if re.match('^[a-z]*[aeiou]+[a-z]+(ed|edly|ing|ingly)$', token):
+            if (token.endswith('ed') or token.endswith('edly') or token.endswith('ing') or token.endswith('ingly')) and re.match('^[a-z]*[aeiou]+[a-z]*(ed|edly|ing|ingly)$', token):
                     if token.endswith('ed'):
                         token = token[0:-2]
                     elif token.endswith('edly'):

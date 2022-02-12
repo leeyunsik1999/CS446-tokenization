@@ -5,6 +5,7 @@ class Stopper():
         for x in stopwordText:
             # Tested this with x[0:(len(x)-1)]-- takes essentially the same time as replace, so i'm just using replace for readability
             self.stopwords.add(x.replace('\n',''))
+        stopwordText.close()
 
     def check(self, input):
         return input in self.stopwords

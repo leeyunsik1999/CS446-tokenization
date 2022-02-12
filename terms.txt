@@ -52,6 +52,7 @@ life 176
 sir 176
 fish 173
 think 172
+cri 172
 sort 171
 live 170
 right 165
@@ -60,8 +61,8 @@ tell 162
 mast 159
 crew 158
 oh 157
-cri 155
 aye 155
+goe 144
 air 143
 hold 143
 harpooneer 137
@@ -144,7 +145,6 @@ death 91
 moby 90
 dick 90
 stood 90
-going 89
 touch 89
 day 89
 cabin 88
@@ -264,7 +264,6 @@ die 56
 tm 56
 grand 55
 try 55
-goe 55
 voice 55
 wake 55
 stranger 55
@@ -298,3 +297,4 @@ wide 51
 object 51
 common 51
 gaze 51
+hoist 51

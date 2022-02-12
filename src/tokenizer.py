@@ -17,5 +17,4 @@ class Tokenizer():
                 if letter == '.':
                     return False
                 expect_period = True
-        print(word)
         return True

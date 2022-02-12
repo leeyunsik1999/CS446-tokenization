@@ -11,6 +11,8 @@ Overall, the entire work is done on processor object initialization. I did not s
 
 Basically, read --> read line --> lowercase --> apostrophe --> split --> (on individual words: abbreviate --> stop --> stem --> add to data).
 
+Unit tests can be found in tests.py and run via $ python tests.py
+
 # 2. (10%) Description of system, design tradeoffs, etc.
 The general system is run from two individual scripts: part-x-runner.py. This was to try and keep most of the code the same for both parts, and be able to handle part-specific data processing separate from the processor script. This can be seen in the fact that part-a-runner.py only writes to file, while part-b-runner.py writes to file, and also utilizes returns from Processor to create a graph.
 
@@ -67,13 +69,15 @@ Example 3
 
 # 3. (5%) List the software libraries you used, and for what purpose.
 
-The libraries used were collection, re, and matplotlib.pyplot.
+The libraries used were collection, re, and matplotlib.pyplot and unittest.
 
 Collection was used for the Counter data structure, which was used to count up the # of individual vocabulary occurrences in an efficient way, and to be able to easily fetch the top 300 terms.
 
 re was used for regexing to detect if terms matched the condition for stemming.
 
 matplotlib.pyplot was used to graph the total vocab - unique vocab graph.
+
+unittest was used for unit testing on abbreviations and stemming.
 
 # 4. (10%) Based on your experience, list two changes you might make to the tokenization or stemming rules to improve the output.
 

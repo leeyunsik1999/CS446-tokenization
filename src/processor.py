@@ -63,12 +63,12 @@ class Processor():
                 """
                 # Abbreviating. Pairs of letter and period --> strip periods. After abbreviating, run it through stopper and stemmer.
                 if Tokenizer.abbreviate(token):
-                    print(token)
                     token = token.replace('.', '')
                     self.stop_and_stem(token)
                 else:
                     for s in token.split("."):
                         self.stop_and_stem(s)
+        text.close()
 
 
     def getData(self):
